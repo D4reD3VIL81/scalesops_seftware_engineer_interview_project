@@ -1,5 +1,4 @@
-# scalesops_seftware_engineer_interview_project
-An image-scraping software using Python
+# Image Scraping Python Program
 
 ## How it works
 It gives a text and searches that in Google, after that it downloads the images resizes them, and saves them in PostgreSQL database.
