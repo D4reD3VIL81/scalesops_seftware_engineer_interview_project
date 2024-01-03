@@ -1,0 +1,22 @@
+FROM python:3.8-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    wget \
+    unzip \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install poetry
+RUN pip install --upgrade pip
+
+ENV POETRY_HTTP_TIMEOUT=600
+ENV PIP_TIMEOUT=600
+
+COPY pyproject.toml poetry.lock /app/
+RUN poetry config virtualenvs.create false
+RUN poetry install --no-interaction --no-ansi
+
+COPY . /app
+
+CMD ["python", "main.py"]
